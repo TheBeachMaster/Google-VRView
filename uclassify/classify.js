@@ -1,6 +1,6 @@
 $(function() {
-    //$("#submitImage input").jqBootstrapValidation({
-    $("#submitImage input").jqBootstrapValidation({
+    
+    $("#classifierForm input").jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
             // additional error messages or events
@@ -12,45 +12,45 @@ $(function() {
 
             // get values from FORM
             //var minim = $("#payload").html($('#payload').val());
-            var minim = $("#payload").val();
-            var payLoad = '"' + minim + '"';
+            var minim = $("#dataInput").val();
+            var payLoad = '\"' + minim + '\"';
             //$("#success").append(payLoad);
             //Initialize Params
             var params = {
 
-                'subscription-key': '0af900bd04f94a789f32631be3ed645f',
+                'Authorization': 'Token sDSsNQYd9cmC',
 
                 // visualFeatures: "All",
-                maxCandidates: "1",
+                //maxCandidates: "1",
             };
 
             $.ajax({
-                url: 'https://api.projectoxford.ai/vision/v1.0/describe?' + $.param(params),
+                url: 'https://api.uclassify.com/v1/ArthurKenOtieno/democlassifier/classify' + $.param(params),
                 type: "POST",
                 contentType: 'application/json',
-                data: '{ "Url": ' + payLoad + ' }', //Push payload  to API
+                data: '{ \"texts\": ' + payLoad + ' }', //Push payload  to API
                 cache: false,
                 success: function(response) {
                     
 
                     //Now we do stuff
 
-                    console.log(response.description.captions)
-                    console.log(response.description.tags)
+                    console.log(response.classification.className)
+                    console.log(response.classification.p)
                     var jsondata = response;
-                    $.each(jsondata.description.captions, function(i, d) {
+                    $.each(jsondata.classification.className, function(i, d) {
                         var row = '<tr>';
                         $.each(d, function(j, e) {
                             row += '<td>' + e + '</td>';
                         });
                         row += '</tr>';
-                        $('#mytable tbody').append(row);
+                        $('#result tbody').append(row);
                             
-                            $('<img />')
-                            .attr('src' ,minim)
-                            .load(function(){
-                                $('article').append($(this));
-                            });
+                            // $('<img />')
+                            // .attr('src' ,minim)
+                            // .load(function(){
+                            //     $('article').append($(this));
+                            // });
                            
                         //alert('Looking Good');
                         $("#success").append("Data received.Looks good!")

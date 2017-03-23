@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--<link href="css/style.css" rel="stylesheet">-->
-        <script src="jquery.min.js" >
-        </script>
-        <script src="jqBootstrapValidation.js" >
-        </script>
-        <script src="classify.js"></script>
-    </head>
-    <body >
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link href="css/style.css" rel="stylesheet">-->
+    <script src="jquery.min.js">
+
+    </script>
+    <script src="jqBootstrapValidation.js">
+
+    </script>
+    <script src="classify.js"></script>
+</head>
+
+<body>
     <header>
         Classifier Model
     </header>
     <section style="padding-left: 5px;">
+        <form id="classifierForm">
             <div>
                 <input type="text" name="dataInput" value="" placeholder="Type some text to be classified" autocomplete="off" size="65">
             </div>
             <div style="padding-top: 5px;">
                 <button id="btnSubmit" type="submit" disabled>Classify</button>
             </div>
+        </form>
 
-            <div id="result" style="padding-top: 5px;">
 
-            </div>
+        <div id="result" style="padding-top: 5px;">
+
+        </div>
+        <div id="success"></div>
     </section>
     <script>
- $("btnSubmit input").jqBootstrapValidation
-        
+        $("btnSubmit input").jqBootstrapValidation
     </script>
-    </body>
+</body>
+
 </html>
